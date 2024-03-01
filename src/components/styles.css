@@ -1,0 +1,40 @@
+.container{
+    width: 60%;
+    margin: auto;
+    top: 120px;
+    position: relative;
+    padding: 5px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+    height: auto;
+}
+.businessownerdetails{
+    border: 2px solid #247AFD;
+    border-radius: 5px;
+    height: auto;
+}
+.bod{
+    height: 3em;
+    padding: 8px;
+    border-bottom: 1px solid #247AFD;
+    background: lightblue;
+    color: #247AFD;
+    display: flex;
+}
+
+input{
+    padding: 5px;
+    width: 235px;
+    border: 0.5px solid gray;
+    border-radius: 4px;
+    
+}
+
+select{
+    width: 250px; 
+    padding: 5px;
+    border: 0.5px solid gray;
+    border-radius: 4px;
+}
+.custom-ul-class a {
+    background-color: transparent;
+}
