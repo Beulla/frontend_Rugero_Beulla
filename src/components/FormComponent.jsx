@@ -50,7 +50,8 @@ const FormComponent = () => {
   //     console.log(formData);
   //   }, [formData]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     axios.post("http://localhost:8080/api/business/new", formData)
 
   };
@@ -143,7 +144,7 @@ const FormComponent = () => {
                   onChange={handleChange}
                   type="number"
                   value={formData.phoneNumber}
-                  name="phone"
+                  name="phoneNumber"
                   placeholder="787858685"
                 />
               </div>
@@ -179,7 +180,7 @@ const FormComponent = () => {
               </label>
               <select
                 onChange={handleChange}
-                name="province1"
+                name="address"
                 value={formData.address}
               >
                 <option value="#">Select Province</option>
@@ -229,7 +230,7 @@ const FormComponent = () => {
                 <input
                   onChange={handleChange}
                   type="text"
-                  name="companyname"
+                  name="companyName"
                   placeholder="Enter Company Name"
                   value={formData.companyName}
                 />
@@ -244,7 +245,7 @@ const FormComponent = () => {
                 <input
                   onChange={handleChange}
                   value={formData.tinNumber}
-                  name="TIN"
+                  name="tinNumber"
                   type="number"
                   placeholder="Enter TIN number"
                 />
@@ -261,9 +262,9 @@ const FormComponent = () => {
                 </label>
                 <input
                   onChange={handleChange}
-                  value={formData.date}
+                  value={formData.registrationDate}
                   type="date"
-                  name="date"
+                  name="registrationDate"
                   placeholder="Select Date"
                 />
               </div>
@@ -281,7 +282,7 @@ const FormComponent = () => {
               </label>
               <select
                 onChange={handleChange}
-                name="province2"
+                name="businessaddress"
                 style={{ width: "250px", padding: "5px" }}
                 value={formData.businessaddress}
               >
@@ -309,7 +310,7 @@ const FormComponent = () => {
               </label>
               <select
                 onChange={handleChange}
-                name="purpose"
+                name="purposeOfImportation"
                 value={formData.purposeOfImportation}
               >
                 <option>Select the purpose of importation</option>
@@ -327,7 +328,7 @@ const FormComponent = () => {
               </label>
               <select
                 onChange={handleChange}
-                name="productcategory"
+                name="productCategory"
                 value={formData.productCategory}
               >
                 <option>Select Product Category</option>
@@ -344,7 +345,7 @@ const FormComponent = () => {
               <input
                 onChange={handleChange}
                 type="text"
-                name="pname"
+                name="businessType"
                 placeholder="Enter product name"
                 value={formData.businessType}
               />
@@ -356,8 +357,8 @@ const FormComponent = () => {
               <input
                 onChange={handleChange}
                 type="number"
-                value={formData.weight}
-                name="weight"
+                value={formData.Weight}
+                name="Weight"
                 placeholder="Weight"
               />
             </div>
@@ -369,7 +370,7 @@ const FormComponent = () => {
                 </label>
                 <select
                   onChange={handleChange}
-                  name="unit"
+                  name="unitOfMeasurement"
                   value={formData.unitOfMeasurement}
                 >
                   <option value="#">Enter Unit Of Measurement</option>
