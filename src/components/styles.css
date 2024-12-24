@@ -6,6 +6,7 @@
     padding: 5px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
     height: auto;
+    border-radius: 20px;
 }
 .businessownerdetails{
     border: 2px solid #247AFD;
@@ -20,7 +21,9 @@
     color: #247AFD;
     display: flex;
 }
-
+#loan{
+    margin: 20px;
+}
 input{
     padding: 5px;
     width: 235px;
@@ -37,4 +40,9 @@ select{
 }
 .custom-ul-class a {
     background-color: transparent;
+}
+textarea{
+    border-radius: 4px;
+    border: 0.3px solid rgb(24, 24, 24);
+    padding: 7px;
 }

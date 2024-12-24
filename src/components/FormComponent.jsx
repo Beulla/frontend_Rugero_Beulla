@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { AiOutlinePaperClip } from "react-icons/ai";
 import axios from 'axios';
-import logo from "../assets/irembo-gov.svg"
 import { RiNewspaperLine } from "react-icons/ri";
 const FormComponent = () => {
   const [formData, setFormData] = useState({
@@ -10,19 +9,11 @@ const FormComponent = () => {
     phoneNumber:"",
     address:"",
     email:"",
-    businessType:"",
-    companyName:"",
-    tinNumber:"",
-    registrationDate:"",
-    businessaddress:"",
-    purposeOfImportation:"",
-    productCategory:"",
-    Weight:"",
-    unitOfMeasurement:"",
-    quantity:"",
-    description:"",
-    NID: "",
-    passport: "",
+    loanAmount:"",
+    applicationDate:"",
+    motive: "",
+    accountNumber:"",
+    bankName:""
   });
 
   const [displaypass, setDisplayPass] = useState("none");
@@ -46,10 +37,6 @@ const FormComponent = () => {
     });
   };
 
-  //   useEffect(() => {
-  //     console.log(formData);
-  //   }, [formData]);
-
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post("http://localhost:8080/api/business/new", formData)
@@ -60,35 +47,25 @@ const FormComponent = () => {
     <div> 
                 <nav class="bg-blue-700 fixed w-full z-20 top-0 start-0">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="https://irembo.gov.rw/home/citizen/all_services" class="flex items-center space-x-5 rtl:space-x-reverse">
-                    <img src={logo} class="h-8" alt="Irembo-Gov logo"/>
-                </a>
+                
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                   <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 custom-ul-class">
-                      <li>
-                          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sign Up</a>
-                      </li>
-                      <li>
-                          <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Log In</a>
-                      </li>
-                      <li>
-                          <input type="search" name="Search" id="search" placeholder="Find Applications" class="text-white" />
-                      </li>
                   </ul>
               </div>
                 </div>
             </nav>
         </div>
     <div className="container">
+      <h1 id="loan">Loan application form</h1>
       <form>
         <div className="businessownerdetails">
           <div className="bod">
-            <RiNewspaperLine/> Business Owner Details
+            <RiNewspaperLine/> Applicant details
           </div>
-          <div style={{ marginLeft: "20px" }}>
-            <h4>Business Owner Details</h4>
+          <div style={{ marginLeft: "20px"}}>
+            <h4 >Applicant details</h4>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", flexDirection: "column",marginTop:"20px" }}>
               <label style={{ fontWeight: "bold", fontSize: "13px" }}>
                 Applicant Citizenship <span style={{ color: "red" }}>*</span>
               </label>
@@ -108,7 +85,7 @@ const FormComponent = () => {
                 style={{
                   fontWeight: "bold",
                   fontSize: "13px",
-                  display: "block",
+                  display: "block",marginTop:"20px"
                 }}
               >
                 Identification Document Number
@@ -117,12 +94,13 @@ const FormComponent = () => {
               <input type="text" placeholder="ID number" name="NID" />
             </div>
 
-            <div style={{ display: `${displaypass}` }}>
+            <div style={{display: `${displaypass}` }}>
               <label
                 style={{
                   fontWeight: "bold",
                   fontSize: "13px",
                   display: "block",
+                  marginTop:"20px"
                 }}
               >
                 Passport Number
@@ -135,9 +113,9 @@ const FormComponent = () => {
               />
             </div>
 
-            <div style={{ display: "flex" }}>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+            <div style={{ display: "flex",flexWrap: "wrap", }}>
+              <div style={{ flex: "0 0 20%" ,display: "flex", flexDirection: "column",marginTop:"20px" }}>
+                <label style={{ fontWeight: "bold", fontSize: "13px"}}>
                   Phone Number
                 </label>
                 <input
@@ -150,9 +128,11 @@ const FormComponent = () => {
               </div>
               <div
                 style={{
+                  flex: "0 0 48%",
                   display: "flex",
                   flexDirection: "column",
                   marginLeft: "20px",
+                  marginTop:"20px"
                 }}
               >
                 <label style={{ fontWeight: "bold", fontSize: "13px" }}>
@@ -167,12 +147,13 @@ const FormComponent = () => {
                 />
               </div>
             </div>
-            <h4>Business Owner Address</h4>
+            <h4 style={{marginTop:"20px",
+              }}>Applicant Address</h4>
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                marginBottom: "50px",
+                marginBottom: "50px",marginTop:"15px",
               }}
             >
               <label style={{ fontWeight: "bold", fontSize: "13px" }}>
@@ -194,236 +175,93 @@ const FormComponent = () => {
         </div>
 
         <div className="businessownerdetails" style={{ marginTop: "40px" }}>
-          <div className="bod">
-            <RiNewspaperLine />
-            Business Details
-          </div>
-          <div style={{ marginLeft: "20px" }}>
-            <h4>Business Details</h4>
+  <div className="bod">
+    <RiNewspaperLine />
+    Application Details
+  </div>
+  <div style={{ marginLeft: "20px" }}>
+    <h4>Application Details</h4>
 
-            <div style={{ display: "flex" }}>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  Business Type <span style={{ color: "red" }}>*</span>
-                </label>
-                <select
-                  onChange={handleChange}
-                  name="businessType"
-                  value={formData.businessType}
-                >
-                  <option>Select Business Type</option>
-                  <option value="retailer">Retailer</option>
-                  <option value="wholesale">Wholesale</option>
-                  <option value="manufacturer">Manufacturer</option>
-                </select>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginLeft: "20px",
-                }}
-              >
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  Company Name <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  onChange={handleChange}
-                  type="text"
-                  name="companyName"
-                  placeholder="Enter Company Name"
-                  value={formData.companyName}
-                />
-              </div>
-            </div>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "20px",
+        marginTop: "20px",
+      }}
+    >
+      <div style={{ flex: "0 0 20%", display: "flex", flexDirection: "column" }}>
+        <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+          Amount <span style={{ color: "red" }}>*</span>
+        </label>
+        <input
+          onChange={handleChange}
+          value={formData.loanAmount}
+          name="loanAmount"
+          type="number"
+          placeholder="Enter loan amount"
+        />
+      </div>
 
-            <div style={{ display: "flex" }}>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  TIN Number <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  onChange={handleChange}
-                  value={formData.tinNumber}
-                  name="tinNumber"
-                  type="number"
-                  placeholder="Enter TIN number"
-                />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginLeft: "20px",
-                }}
-              >
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  Registration Date<span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  onChange={handleChange}
-                  value={formData.registrationDate}
-                  type="date"
-                  name="registrationDate"
-                  placeholder="Select Date"
-                />
-              </div>
-            </div>
-            <h4>Business Owner Address</h4>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: "50px",
-              }}
-            >
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Province <span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                onChange={handleChange}
-                name="businessaddress"
-                style={{ width: "250px", padding: "5px" }}
-                value={formData.businessaddress}
-              >
-                <option value="#">Select Province</option>
-                <option value="Western">Western</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Northern">Northern</option>
-                <option value="Southern">Southern</option>
-              </select>
-            </div>
-          </div>
-        </div>
+      <div style={{ flex: "0 0 48%", display: "flex", flexDirection: "column" }}>
+        <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+          Application Date <span style={{ color: "red" }}>*</span>
+        </label>
+        <input
+          onChange={handleChange}
+          value={formData.applicationDate}
+          type="date"
+          name="applicationDate"
+          placeholder="Select Date"
+        />
+      </div>
 
-        <div className="businessownerdetails" style={{ marginTop: "40px" }}>
-          <div className="bod">
-            <RiNewspaperLine />
-            Product Information
-          </div>
-          <div style={{ marginLeft: "20px" }}>
-            <h4>Importation Details</h4>
+      <div style={{ flex: "0 0 20%", display: "flex", flexDirection: "column" }}>
+        <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+          Bank name <span style={{ color: "red" }}>*</span>
+        </label>
+        <input
+          onChange={handleChange}
+          value={formData.bankName}
+          name="bankName"
+          type="text"
+          placeholder="Enter bank name"
+        />
+      </div>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Purpose of Importation <span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                onChange={handleChange}
-                name="purposeOfImportation"
-                value={formData.purposeOfImportation}
-              >
-                <option>Select the purpose of importation</option>
-                <option value="direct">Direct Sale</option>
-                <option value="personal">Personal Use</option>
-                <option value="trial">Trial Sale</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <h4>Product Details</h4>
+      <div style={{ flex: "0 0 20%", display: "flex", flexDirection: "column" }}>
+        <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+          Account number <span style={{ color: "red" }}>*</span>
+        </label>
+        <input
+          onChange={handleChange}
+          value={formData.accountNumber}
+          name="accountNumber"
+          type="number"
+          placeholder="Enter account number"
+        />
+      </div>
 
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Product Category <span style={{ color: "red" }}>*</span>
-              </label>
-              <select
-                onChange={handleChange}
-                name="productCategory"
-                value={formData.productCategory}
-              >
-                <option>Select Product Category</option>
-                <option value="general">General Purpose</option>
-                <option value="construction">Construction Material</option>
-                <option value="chemicals">Chemicals</option>
-              </select>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Product Name <span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                onChange={handleChange}
-                type="text"
-                name="businessType"
-                placeholder="Enter product name"
-                value={formData.businessType}
-              />
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Weight (kg)<span style={{ color: "red" }}>*</span>
-              </label>
-              <input
-                onChange={handleChange}
-                type="number"
-                value={formData.Weight}
-                name="Weight"
-                placeholder="Weight"
-              />
-            </div>
-
-            <div style={{ display: "flex" }}>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  Unit of Measurement <span style={{ color: "red" }}>*</span>
-                </label>
-                <select
-                  onChange={handleChange}
-                  name="unitOfMeasurement"
-                  value={formData.unitOfMeasurement}
-                >
-                  <option value="#">Enter Unit Of Measurement</option>
-                  <option value="kgs">Kgs</option>
-                  <option value="tonnes">Tonnes</option>
-                </select>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginLeft: "20px",
-                }}
-              >
-                <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                  Quantity of product(s)<span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  onChange={handleChange}
-                  type="number"
-                  name="quantity"
-                  placeholder="Enter Quantity"
-                  value={formData.quantity}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <label style={{ fontWeight: "bold", fontSize: "13px" }}>
-                Description of Product(s)){" "}
-                <span style={{ color: "red" }}>*</span>
-              </label>
-              <textarea
-                value={formData.description}
-                onChange={handleChange}
-                name="description"
-                placeholder="Enter Product Description"
-                style={{
-                  width: "500px",
-                  height: "200px",
-                  outline: "none",
-                  marginBottom: "30px",
-                }}
-              ></textarea>
-            </div>
-          </div>
-        </div>
+      <div style={{ flex: "0 0 48%", display: "flex", flexDirection: "column",marginBottom:"30px" }}>
+        <label style={{ fontWeight: "bold", fontSize: "13px" }}>
+          Motive <span style={{ color: "red" }}>*</span>
+        </label>
+        <textarea
+          onChange={handleChange}
+          value={formData.motive}
+          name="motive"
+          type="text"
+          placeholder="Enter reason for application"
+        />
+      </div>
+    </div>
+  </div>
+</div>
       </form>
-
       <input
         onChange={handleChange}
         style={{
-          margin: "30px",
+          margin: "10px",
           background: "#247AFD",
           border: "none",
           borderRadius: "50px",
@@ -431,7 +269,7 @@ const FormComponent = () => {
           color: "#fff",
           position: "relative",
           left: "30%",
-          cursor: "pointer",
+          cursor: "pointer"
         }}
         type="submit"
         value="Submit"
